@@ -39,13 +39,27 @@ Abre `http://localhost:3000`.
 Configura en `.env.local`:
 
 ```
-KOMMO_BASE_URL=https://virgo.kommo.com
-KOMMO_ACCESS_TOKEN=...
-KOMMO_PIPELINE_ID=...
+KOMMO_BASE_URL=https://virgocorredores.kommo.com
+KOMMO_ACCESS_TOKEN=<long-lived token>
+KOMMO_PIPELINE_ID=<id numérico>
+KOMMO_STATUS_ID=<id numérico de la etapa de entrada>
+KOMMO_RESPONSIBLE_USER_ID=<opcional>
+KOMMO_LEAD_SOURCE_FIELD_ID=<opcional — campo custom texto>
+KOMMO_TIMEOUT_MS=10000
 ```
 
-Sin estas variables, los formularios siguen funcionando pero se registran como **stub** en el log del servidor.
+**Cómo obtener el token**: Kommo → Ajustes → Integraciones → "+ Crear integración" → Privada.
+Copia el *access token* de larga duración.
+
+**Cómo obtener pipeline/status IDs**:
+`curl -H "Authorization: Bearer $KOMMO_ACCESS_TOKEN" https://virgocorredores.kommo.com/api/v4/leads/pipelines`
+
+Sin estas variables los formularios siguen funcionando pero se registran como **stub**
+en el log del servidor (no se crea lead en el CRM).
+
 Toda la comunicación con Kommo vive en `src/lib/kommo/` y se invoca desde `src/app/api/leads/route.ts`.
+El cliente crea un lead vía `/api/v4/leads/complex` (con `request_id` para idempotencia) y agrega
+una nota adicional con RUT/asunto/mensaje cuando corresponde.
 
 ## Estructura
 

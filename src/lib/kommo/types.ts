@@ -23,6 +23,9 @@ export type KommoComplexLead = {
   name: string;
   price?: number;
   pipeline_id?: number;
+  status_id?: number;
+  responsible_user_id?: number;
+  request_id?: string;
   _embedded: {
     contacts: Array<{
       name: string;
