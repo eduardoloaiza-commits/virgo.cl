@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Logo } from "@/components/layout/Logo";
-import { Field, Input } from "@/components/forms/FormField";
-import { Button } from "@/components/ui/Button";
+import { auth } from "@/lib/auth";
+import { LoginForm } from "./LoginForm";
 
 export const metadata: Metadata = {
   title: "Portal del asegurado · Ingresar",
   description: "Accede a tu portal privado en Virgo: pólizas, gestiones y trámites.",
 };
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await auth();
+  if (session?.user) {
+    redirect(session.user.role === "admin" ? "/admin" : "/portal");
+  }
+
   return (
     <div className="min-h-[calc(100vh-200px)] grid md:grid-cols-2">
       <div className="hidden md:flex relative bg-virgo-teal-900 text-white flex-col justify-between p-12 overflow-hidden">
@@ -39,26 +45,16 @@ export default function LoginPage() {
           <span className="eyebrow">Portal del asegurado</span>
           <h1 className="mt-2 font-display text-headline-xl">Ingresa a tu cuenta</h1>
           <p className="mt-2 text-ink-muted text-sm">
-            Usa el correo con el que contrataste tu seguro.
+            Usa tu RUT y la contraseña que te entregó tu asesor.
           </p>
 
-          <form action="/portal" className="mt-8 grid gap-4">
-            <Field label="Correo electrónico" required>
-              <Input name="email" type="email" placeholder="tu@correo.cl" autoComplete="email" required />
-            </Field>
-            <Field label="Contraseña" required>
-              <Input name="password" type="password" autoComplete="current-password" required />
-            </Field>
-            <div className="flex items-center justify-between text-sm">
-              <label className="inline-flex items-center gap-2 text-ink-muted">
-                <input type="checkbox" className="rounded border-ink/20" /> Recuérdame
-              </label>
-              <Link href="/portal/recuperar" className="text-virgo-teal font-semibold hover:underline">
-                Recuperar contraseña
-              </Link>
-            </div>
-            <Button type="submit" size="lg" className="mt-2">Entrar al portal</Button>
-          </form>
+          <LoginForm />
+
+          <div className="mt-6 flex items-center justify-between text-sm">
+            <Link href="/portal/recuperar" className="text-virgo-teal font-semibold hover:underline">
+              Recuperar contraseña
+            </Link>
+          </div>
 
           <p className="mt-8 text-sm text-ink-muted">
             ¿Aún no tienes cuenta?{" "}

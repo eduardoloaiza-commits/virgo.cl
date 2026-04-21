@@ -9,9 +9,11 @@ Plataforma web para **Virgo Corredores de Seguros** (Chile). Tres módulos en un
 ## Stack
 
 - Next.js 14 (App Router) + TypeScript + Tailwind CSS
-- Fuentes Google: Plus Jakarta Sans (display) + Manrope (body)
-- Integración desacoplada con Kommo CRM (stub hasta configurar credenciales)
-- Validación con Zod
+- Auth.js v5 (credentials provider + JWT sessions)
+- Drizzle ORM + Vercel Postgres (Neon)
+- Resend (email transaccional)
+- Kommo CRM (ingestión de leads y lectura de pipelines)
+- Zod (validación)
 
 Design tokens derivados del design system **Virgo Core** diseñado en Stitch
 (`projects/2045003815951231284`).
@@ -33,6 +35,37 @@ Abre `http://localhost:3000`.
 - `npm run start` — servidor en modo producción
 - `npm run typecheck` — validación de tipos
 - `npm run lint` — ESLint
+- `npm run db:generate` — genera migración SQL a partir del schema Drizzle
+- `npm run db:push` — aplica el schema directo a la DB (solo dev)
+
+## Base de datos + Auth
+
+Variables requeridas en `.env.local` / Vercel:
+
+```
+DATABASE_URL=postgres://...               # Neon via Vercel Marketplace
+AUTH_SECRET=<32 bytes base64>             # openssl rand -base64 32
+ADMIN_BOOTSTRAP_SECRET=<secret arbitrario>
+ADMIN_RUT=12.345.678-9
+ADMIN_EMAIL=admin@virgo.cl
+ADMIN_NOMBRE=Administrador Virgo
+ADMIN_INITIAL_PASSWORD=<mínimo 10 chars>
+```
+
+**Bootstrap del primer admin** (solo la primera vez, después deshabilita):
+
+```bash
+# 1. Aplica el schema a la DB
+curl -X POST https://virgo.cl/api/admin/migrate \
+  -H "x-bootstrap-secret: $ADMIN_BOOTSTRAP_SECRET"
+
+# 2. Crea el primer admin (idempotente — falla si ya existe admin)
+curl -X POST https://virgo.cl/api/admin/bootstrap \
+  -H "x-bootstrap-secret: $ADMIN_BOOTSTRAP_SECRET"
+```
+
+Después de confirmar el admin, **borra `ADMIN_INITIAL_PASSWORD`** de las envs de Vercel
+para que el hash no pueda regenerarse.
 
 ## Integración con Kommo
 

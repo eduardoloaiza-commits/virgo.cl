@@ -1,10 +1,24 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Logo } from "@/components/layout/Logo";
 import { PortalNav } from "@/components/portal/PortalNav";
-import { mockUser } from "@/lib/portal-mock";
+import { LogoutButton } from "@/components/portal/LogoutButton";
+import { auth } from "@/lib/auth";
 
-export default function PortalLayout({ children }: { children: ReactNode }) {
+export default async function PortalLayout({ children }: { children: ReactNode }) {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/portal/login");
+  }
+
+  const initials = session.user.nombre
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((s) => s[0]?.toUpperCase() ?? "")
+    .join("") || "U";
+
   return (
     <div className="min-h-screen bg-surface-soft">
       <header className="bg-surface-bright border-b border-ink/5 sticky top-0 z-30">
@@ -17,16 +31,13 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
           </div>
           <div className="flex items-center gap-3">
             <div className="text-right hidden sm:block">
-              <p className="text-sm font-semibold text-ink leading-tight">{mockUser.firstName} {mockUser.lastName}</p>
-              <p className="text-xs text-ink-soft">{mockUser.email}</p>
+              <p className="text-sm font-semibold text-ink leading-tight">{session.user.nombre}</p>
+              <p className="text-xs text-ink-soft">{session.user.email}</p>
             </div>
             <div className="h-10 w-10 rounded-full bg-virgo-teal text-white flex items-center justify-center font-semibold">
-              {mockUser.firstName[0]}
-              {mockUser.lastName[0]}
+              {initials}
             </div>
-            <Link href="/" className="ml-2 text-sm text-ink-soft hover:text-ink">
-              Salir
-            </Link>
+            <LogoutButton />
           </div>
         </div>
         <div className="md:hidden border-t border-ink/5 overflow-x-auto">

@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  outputFileTracingIncludes: {
+    "/api/admin/migrate": ["./drizzle/**/*.sql"],
+  },
 };
 
 export default nextConfig;
