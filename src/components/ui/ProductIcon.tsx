@@ -71,6 +71,32 @@ const paths: Record<string, React.ReactNode> = {
       <path d="M10 20v-6h4v6" />
     </>
   ),
+  bike: (
+    <>
+      <circle cx="6" cy="17" r="3.5" />
+      <circle cx="18" cy="17" r="3.5" />
+      <path d="M6 17l4-8h5l3 8" />
+      <path d="M10 9h3" />
+      <path d="M15 9l-1-3h-2" />
+    </>
+  ),
+  scale: (
+    <>
+      <path d="M12 3v18" />
+      <path d="M5 6h14" />
+      <path d="M5 6l-3 6a3 3 0 006 0z" />
+      <path d="M19 6l-3 6a3 3 0 006 0z" />
+      <path d="M8 21h8" />
+    </>
+  ),
+  bandaid: (
+    <>
+      <rect x="3" y="8" width="18" height="8" rx="2" transform="rotate(-20 12 12)" />
+      <path d="M9 11l6 2" />
+      <circle cx="10.5" cy="10.5" r="0.5" />
+      <circle cx="13.5" cy="13.5" r="0.5" />
+    </>
+  ),
 };
 
 export function ProductIcon({ name, className }: IconProps) {

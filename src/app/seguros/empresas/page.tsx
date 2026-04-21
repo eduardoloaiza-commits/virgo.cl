@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/Button";
 import { ProductIcon } from "@/components/ui/ProductIcon";
 import { byAudience } from "@/lib/catalog";
 
+import { site } from "@/lib/site";
+
 export const metadata: Metadata = {
   title: "Seguros para empresas",
-  description: "Seguros colectivos, salud empresarial y protección PYME con acompañamiento dedicado.",
+  description: "Menos riesgo, más control. Seguros colectivos, salud empresarial y protección PYME con acompañamiento dedicado.",
 };
 
 export default function EmpresasPage() {
@@ -18,7 +20,7 @@ export default function EmpresasPage() {
         <Container className="max-w-4xl">
           <span className="text-label-sm uppercase tracking-wider text-virgo-lime-300">Empresas</span>
           <h1 className="mt-3 font-display text-display-lg text-balance">
-            Beneficios reales y coberturas que tu equipo valora.
+            Menos riesgo, más control.
           </h1>
           <p className="mt-6 text-white/80 text-body-lg">
             Diseñamos programas colectivos, salud y protección PYME con onboarding digital, reporting y una
@@ -30,6 +32,9 @@ export default function EmpresasPage() {
               Agendar reunión
             </Button>
           </div>
+          <p className="mt-8 text-sm text-white/60">
+            Confían en nosotros {site.clients.slice(0, 6).join(" · ")} y más.
+          </p>
         </Container>
       </section>
 

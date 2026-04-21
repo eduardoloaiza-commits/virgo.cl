@@ -4,7 +4,7 @@ export type InsuranceCategory = {
   icon: string;
   summary: string;
   highlights: string[];
-  audience: "personas" | "empresas" | "mascotas";
+  audience: "personas" | "especializadas" | "empresas" | "mascotas";
 };
 
 export const catalog: InsuranceCategory[] = [
@@ -23,6 +23,14 @@ export const catalog: InsuranceCategory[] = [
     audience: "personas",
     summary: "Resguarda tu casa o departamento frente a incendios, robos y daños accidentales.",
     highlights: ["Contenido y estructura", "Gastos de reposición", "Asistencia hogar ilimitada"],
+  },
+  {
+    slug: "viaje",
+    name: "Viaje",
+    icon: "plane",
+    audience: "personas",
+    summary: "Viaja tranquilo con asistencia médica internacional y cobertura por imprevistos.",
+    highlights: ["Asistencia médica 24/7", "Equipaje y cancelación", "Cobertura multi-destino"],
   },
   {
     slug: "salud",
@@ -49,20 +57,36 @@ export const catalog: InsuranceCategory[] = [
     highlights: ["Ahorro con beneficio APV", "Protección familiar", "Asesoría previsional"],
   },
   {
-    slug: "viaje",
-    name: "Viaje",
-    icon: "plane",
-    audience: "personas",
-    summary: "Viaja tranquilo con asistencia médica internacional y cobertura por imprevistos.",
-    highlights: ["Asistencia médica 24/7", "Equipaje y cancelación", "Cobertura multi-destino"],
+    slug: "bicicleta",
+    name: "Bicicleta",
+    icon: "bike",
+    audience: "especializadas",
+    summary: "Cobertura frente a robo, accidentes y daños para ciclistas urbanos y deportivos.",
+    highlights: ["Robo y daños materiales", "Asistencia en ruta", "Responsabilidad civil del ciclista"],
   },
   {
-    slug: "mascotas",
+    slug: "responsabilidad-civil",
+    name: "Responsabilidad Civil",
+    icon: "scale",
+    audience: "especializadas",
+    summary: "Te protege ante reclamos por daños involuntarios causados a terceros.",
+    highlights: ["Daños materiales y personales", "Defensa jurídica", "Cobertura familiar opcional"],
+  },
+  {
+    slug: "accidentes-personales",
+    name: "Accidentes Personales",
+    icon: "bandaid",
+    audience: "especializadas",
+    summary: "Indemnización y apoyo médico ante accidentes que afectan tu integridad.",
+    highlights: ["Invalidez y fallecimiento accidental", "Gastos médicos", "Asistencia 24/7"],
+  },
+  {
+    slug: "peludos",
     name: "Peludos",
     icon: "paw",
     audience: "mascotas",
-    summary: "Cuidamos a los integrantes más queridos de tu familia con atención veterinaria respaldada.",
-    highlights: ["Consultas y urgencias", "Cirugías cubiertas", "Responsabilidad civil del tutor"],
+    summary: "Tu mascota también es familia. Atención veterinaria respaldada cuando más la necesita.",
+    highlights: ["Consultas veterinarias", "Tratamientos y emergencias", "Responsabilidad civil del tutor"],
   },
   {
     slug: "colectivos",

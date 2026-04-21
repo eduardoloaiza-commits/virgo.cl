@@ -43,8 +43,8 @@ export function Footer() {
         <div>
           <Logo tone="light" />
           <p className="mt-4 max-w-sm text-white/70 text-body-md">
-            Corredora chilena con asesoría humana en cada paso. Trabajamos con los principales convenios del
-            mercado para encontrarte la mejor protección.
+            {site.tagline} Corredora chilena desde {site.sinceYear}, trabajando con los principales convenios del
+            mercado para entregarte tranquilidad real.
           </p>
           <p className="mt-6 text-sm text-white/60">Convenios: {site.partners.join(" · ")}</p>
         </div>

@@ -4,14 +4,14 @@ import { Button } from "@/components/ui/Button";
 import { ProductIcon } from "@/components/ui/ProductIcon";
 
 export const metadata: Metadata = {
-  title: "Seguro para mascotas",
-  description: "Cobertura veterinaria para perros y gatos: consultas, cirugías, urgencias y responsabilidad civil.",
+  title: "Protege a tu peludo",
+  description: "Tu mascota también es familia. Consultas veterinarias, tratamientos y emergencias con respaldo real.",
 };
 
 const coberturas = [
-  { title: "Consultas y chequeos", description: "Accede a una red de veterinarios con copago reducido." },
-  { title: "Urgencias y hospitalización", description: "Atención en clínicas autorizadas sin letras chicas." },
-  { title: "Cirugías cubiertas", description: "Procedimientos incluidos con un deducible claro." },
+  { title: "Consultas veterinarias", description: "Red de veterinarios con copago reducido y atención ágil." },
+  { title: "Tratamientos", description: "Medicamentos, terapias y seguimiento para condiciones cubiertas." },
+  { title: "Emergencias", description: "Atención de urgencia en clínicas autorizadas, sin letras chicas." },
   { title: "Responsabilidad civil del tutor", description: "Protección si tu mascota causa daños a terceros." },
 ];
 
@@ -21,16 +21,16 @@ export default function MascotasPage() {
       <section className="section bg-gradient-to-br from-virgo-lime-100 via-virgo-teal-50 to-surface">
         <Container className="grid lg:grid-cols-[1.2fr_1fr] gap-10 items-center">
           <div>
-            <span className="eyebrow">Seguro peludos</span>
+            <span className="eyebrow">Protege a tu peludo</span>
             <h1 className="mt-3 font-display text-display-lg text-balance">
-              El seguro que cuida al integrante más especial de la familia.
+              Tu mascota también es familia.
             </h1>
             <p className="mt-6 text-body-lg text-ink-muted max-w-xl">
-              Atención veterinaria, cirugías y urgencias cubiertas con un plan simple y transparente. Sin letra
-              chica y con asesor humano disponible cuando lo necesites.
+              Consultas, tratamientos y emergencias cubiertas con un plan simple y transparente. Sin letra
+              chica y con un asesor humano disponible cuando lo necesites.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/cotiza?producto=mascotas" size="lg">Cotizar plan peludos</Button>
+              <Button href="/cotiza?producto=peludos" size="lg">Cotizar plan peludos</Button>
               <Button href="/contacto" variant="secondary" size="lg">Preguntas frecuentes</Button>
             </div>
           </div>

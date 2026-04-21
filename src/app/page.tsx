@@ -3,12 +3,13 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { ProductCard } from "@/components/marketing/ProductCard";
 import { ProductIcon } from "@/components/ui/ProductIcon";
+import { ClientsStrip } from "@/components/marketing/ClientsStrip";
 import { byAudience, catalog } from "@/lib/catalog";
-import { whatsappLink } from "@/lib/site";
+import { site, whatsappLink } from "@/lib/site";
 
 const beneficios = [
   {
-    title: "Asesoría humana",
+    title: "Atención personalizada",
     description: "Un asesor dedicado que te acompaña en la contratación, siniestros y renovaciones.",
   },
   {
@@ -16,17 +17,17 @@ const beneficios = [
     description: "Resolvemos consultas y trámites en horas, no en días. Cada caso tiene seguimiento online.",
   },
   {
-    title: "Soluciones a medida",
-    description: "Comparamos convenios y coberturas para recomendarte lo que realmente necesitas.",
+    title: "Asesoría experta",
+    description: "Estudiamos tu caso y comparamos convenios para recomendarte lo que realmente necesitas.",
   },
   {
-    title: "Autogestión real",
-    description: "Revisa tus pólizas, inicia gestiones y consulta estados desde tu portal privado 24/7.",
+    title: "Soluciones a medida",
+    description: "Coberturas diseñadas para tu realidad, no paquetes enlatados.",
   },
 ];
 
 export default function HomePage() {
-  const featured = catalog.slice(0, 6);
+  const featured = byAudience("personas").slice(0, 6);
 
   return (
     <>
@@ -35,13 +36,13 @@ export default function HomePage() {
         <div className="absolute right-[-10%] top-[-10%] -z-10 h-[520px] w-[520px] rounded-full bg-virgo-lime/20 blur-3xl" />
         <Container className="pt-16 pb-20 md:pt-24 md:pb-28 grid gap-12 lg:grid-cols-[1.15fr_1fr] items-center">
           <div>
-            <span className="eyebrow">Corredora de seguros · Chile</span>
+            <span className="eyebrow">Corredores de seguros · Desde {site.sinceYear}</span>
             <h1 className="mt-4 font-display font-bold text-display-xl text-balance">
-              Seguros claros, <span className="text-virgo-teal">asesoría humana</span> y respuesta real.
+              Más que un seguro, somos tu <span className="text-virgo-teal">socio de confianza</span>.
             </h1>
             <p className="mt-6 text-body-lg text-ink-muted max-w-2xl">
-              En Virgo combinamos los mejores convenios con el trato cercano de siempre. Cotiza en minutos,
-              gestiona tus trámites online y sigue cada paso desde tu portal.
+              No vendemos seguros, entregamos tranquilidad. Asesoría personalizada, respuesta rápida y
+              soluciones a medida para personas y empresas que no son un número.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/cotiza" variant="primary" size="lg">
@@ -56,12 +57,12 @@ export default function HomePage() {
             </div>
             <dl className="mt-10 grid grid-cols-3 gap-6 max-w-lg">
               <div>
-                <dt className="text-xs uppercase tracking-wider text-ink-soft">Convenios</dt>
-                <dd className="mt-1 font-display text-xl text-ink font-semibold">Help · Mapfre</dd>
+                <dt className="text-xs uppercase tracking-wider text-ink-soft">Desde</dt>
+                <dd className="mt-1 font-display text-xl text-ink font-semibold">{site.sinceYear}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wider text-ink-soft">Atención</dt>
-                <dd className="mt-1 font-display text-xl text-ink font-semibold">24/7 online</dd>
+                <dt className="text-xs uppercase tracking-wider text-ink-soft">Convenios</dt>
+                <dd className="mt-1 font-display text-xl text-ink font-semibold">Help · Mapfre</dd>
               </div>
               <div>
                 <dt className="text-xs uppercase tracking-wider text-ink-soft">Respuesta</dt>
@@ -120,9 +121,9 @@ export default function HomePage() {
         <Container>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <div className="max-w-2xl">
-              <span className="eyebrow">Nuestros seguros</span>
+              <span className="eyebrow">Seguros para ti</span>
               <h2 className="mt-3 font-display text-headline-xl text-balance">
-                Protección para cada etapa, para ti y para tu empresa.
+                Protección para cada etapa, para ti y tu familia.
               </h2>
             </div>
             <div className="flex gap-3">
@@ -135,19 +136,29 @@ export default function HomePage() {
               <ProductCard key={c.slug} category={c} />
             ))}
           </div>
+          <div className="mt-10 rounded-xl bg-virgo-teal-50 p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+              <span className="eyebrow">Coberturas especializadas</span>
+              <p className="mt-2 text-ink font-display text-headline-md">Bicicleta · Responsabilidad Civil · Accidentes Personales</p>
+              <p className="mt-1 text-ink-muted text-sm">Protección extra para los detalles que muchas corredoras pasan por alto.</p>
+            </div>
+            <Button href="/seguros/personas#especializadas" variant="secondary" size="md">Ver especializadas</Button>
+          </div>
         </Container>
       </section>
+
+      <ClientsStrip />
 
       <section className="section">
         <Container className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <span className="eyebrow">Por qué Virgo</span>
+            <span className="eyebrow">Nuestro compromiso</span>
             <h2 className="mt-3 font-display text-headline-xl text-balance">
-              Un socio cercano que resuelve, no un call center que te deja esperando.
+              No vendemos seguros, entregamos tranquilidad.
             </h2>
             <p className="mt-4 text-body-lg text-ink-muted">
-              Creemos en la asesoría personalizada y en procesos simples. Por eso combinamos tecnología con trato
-              humano: tú decides si prefieres autogestionar en tu portal o que un asesor te acompañe.
+              Creemos en la asesoría personalizada, las soluciones a medida y el acompañamiento constante.
+              Aquí no eres un número: tienes un asesor que conoce tu historia y responde cuando lo necesitas.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
