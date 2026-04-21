@@ -5,9 +5,9 @@ export const site = {
   promise: "No vendemos seguros, entregamos tranquilidad.",
   since: "28 de febrero de 2020",
   sinceYear: 2020,
-  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "56900000000",
+  whatsappNumber: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "56900000000").replace(/\D/g, ""),
   email: "contacto@virgo.cl",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://virgo.cl",
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://virgo.cl").trim(),
   partners: ["Help", "Mapfre"],
   clients: [
     "Besalco",
