@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-jakarta: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-manrope: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface text-ink font-sans text-body-md;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-ink;
+    font-feature-settings: "ss01";
+  }
+
+  ::selection {
+    background-color: #ACEDF8;
+    color: #001F23;
+  }
+}
+
+@layer components {
+  .section {
+    @apply py-section md:py-section-lg;
+  }
+
+  .eyebrow {
+    @apply text-label-sm uppercase tracking-[0.14em] text-virgo-teal;
+  }
+
+  .card-soft {
+    @apply bg-surface-bright rounded-xl shadow-card;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
