@@ -16,7 +16,7 @@ export default function LoginPage() {
         <div className="absolute -top-10 -right-10 h-80 w-80 rounded-full bg-virgo-lime/20 blur-3xl" />
         <Logo tone="light" />
         <div className="relative">
-          <h2 className="font-display text-headline-xl text-balance">
+          <h2 className="font-display text-headline-xl text-balance text-white">
             Todo tu seguro, en un solo portal.
           </h2>
           <p className="mt-4 text-white/75 max-w-md">

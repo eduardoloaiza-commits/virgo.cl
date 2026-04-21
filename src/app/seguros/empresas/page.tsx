@@ -19,7 +19,7 @@ export default function EmpresasPage() {
       <section className="section bg-virgo-teal-900 text-white">
         <Container className="max-w-4xl">
           <span className="text-label-sm uppercase tracking-wider text-virgo-lime-300">Empresas</span>
-          <h1 className="mt-3 font-display text-display-lg text-balance">
+          <h1 className="mt-3 font-display text-display-lg text-balance text-white">
             Menos riesgo, más control.
           </h1>
           <p className="mt-6 text-white/80 text-body-lg">
